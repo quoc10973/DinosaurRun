@@ -1,0 +1,53 @@
+# This .gitignore file should be placed at the root of your Unity project directory
+
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Unity auto-generated files
+sysinfo.txt
+*.stacktrace
+
+# Visual Studio / Rider
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+.vs/
+.vs
+
+# Unity Asset Store tools
+*.unitypackage
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Crash and error logs
+*.log
+
+# Packages
+Packages/manifest.json
+Packages/packages-lock.json
+
+# Uncomment if you use Collaborate and want to ignore its files
+# .collabignore
+# .collab/
+
+# Addressable Assets
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/Build*
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/AssetBundles
