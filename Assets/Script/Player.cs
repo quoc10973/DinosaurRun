@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         isGrounded = CheckIfGrounded(); // Check if the player is grounded
         HandleJump(); // Handle player jump input
         HandleDuck(); // Handle player duck input
+        HandleSoundEffect(); // Handle sound effects based on player actions
     }
 
     private bool CheckIfGrounded()
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
     private void HandleJump()
     {
         // Check if the player is grounded before allowing a jump
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = Vector2.up * jumpForce; // Apply an upward force to the player
         }
@@ -58,17 +59,42 @@ public class Player : MonoBehaviour
 
     private void HandleDuck()
     {
-        if(Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-           normalCollider.enabled = false; // Disable the normal collider
+            normalCollider.enabled = false; // Disable the normal collider
             duckCollider.enabled = true; // Enable the duck collider
             animator.SetBool("isDuck", true); // Set the parameter in the animator to true
         }
-        else if(Input.GetKeyUp(KeyCode.S))
+        else if (Input.GetKeyUp(KeyCode.S))
         {
             normalCollider.enabled = true; // Enable the normal collider
             duckCollider.enabled = false; // Disable the duck collider
             animator.SetBool("isDuck", false); // Set the parameter in the animator to false
+        }
+    }
+
+    private void HandleSoundEffect()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            AudioManager.instance.PlayJumpSound(); // Play the jump sound effect
+        }
+        else if (isGrounded && !AudioManager.instance.HasPlayedEffectSound())
+        {
+           AudioManager.instance.PlayDropSound(); // Play the drop sound effect
+            AudioManager.instance.SetHasPlayedEffectSound(true); // Set the effect sound played flag to true
+        }
+        else if (!isGrounded)
+        {
+            AudioManager.instance.SetHasPlayedEffectSound(false); // Set the effect sound played flag to false
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            AudioManager.instance.PlayHurtSound(); // Play the hurt sound effect
         }
     }
 }

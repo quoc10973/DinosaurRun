@@ -6,6 +6,7 @@ public class Egg : MonoBehaviour
 
     void HideEggShowPlayer()
     {   
+        AudioManager.instance.PlayCrackEggSound();
         gameObject.SetActive(false);
         player.SetActive(true);
     }
