@@ -95,4 +95,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        
+    }
 }
