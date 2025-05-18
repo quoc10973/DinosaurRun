@@ -148,4 +148,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftBoundary: -10
-  gameSpeed: 1
+  gameSpeed: 3

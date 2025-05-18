@@ -47,5 +47,8 @@ TagManager:
   - name: Player
     uniqueID: 3340686041
     locked: 0
+  - name: Egg
+    uniqueID: 3799269203
+    locked: 0
   m_RenderingLayers:
   - Default

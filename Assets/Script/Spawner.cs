@@ -5,6 +5,7 @@ public class Spawner : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] obstacles;
+    [SerializeField] private Transform topPos;
     [SerializeField] private Transform highPos;
     [SerializeField] private Transform lowPos;
     private float spawnTime = 1f;
@@ -24,13 +25,18 @@ public class Spawner : MonoBehaviour
     private void SpawnObstacles()
     {
         int randomIndex = Random.Range(0, obstacles.Length);
-        if(randomIndex==0 || randomIndex == 1)
+        if (randomIndex == 0 || randomIndex == 1 )
         {
             GameObject obstacle = Instantiate(obstacles[randomIndex], lowPos.position, Quaternion.identity);
         }
-        else
+
+        else if (randomIndex == 2)
         {
-            Instantiate(obstacles[randomIndex], highPos.position, Quaternion.identity);
+            // Random high or top position for eagle
+            Transform[] eaglePositions = new Transform[] { highPos, topPos };
+            int posIndex = Random.Range(0, eaglePositions.Length);
+
+            Instantiate(obstacles[randomIndex], eaglePositions[posIndex].position, Quaternion.identity);
         }
     }
 }
